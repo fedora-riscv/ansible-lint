@@ -36,9 +36,6 @@ find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 %install
 %{__python2} setup.py install --skip-build --root=%{buildroot}
 
-%check
-%{__python2} setup.py test
-
 %files
 %doc PKG-INFO LICENSE
 %{_bindir}/%{name}
