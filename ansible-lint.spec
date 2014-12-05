@@ -2,7 +2,7 @@
 %global lib_name ansiblelint
 
 Name:           %{archive_name}
-Version:        1.0.4
+Version:        2.0.1
 Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
@@ -41,6 +41,9 @@ find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 %{python2_sitelib}/ansible_lint-%{version}-py2.*.egg-info
 
 %changelog
+* Fri Dec 05 2014 Parag Nemade <pnemade AT redhat DOT com> - 2.0.1-1
+- Update to 2.0.1
+
 * Mon Oct 27 2014 Parag Nemade <pnemade AT redhat DOT com> - 1.0.4-1
 - rename to ansible-lint
 - new upstream 1.0.4 release which added LICENSE file.
