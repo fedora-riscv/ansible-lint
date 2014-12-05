@@ -1,8 +1,13 @@
+%if 0%{?rhel} && 0%{?rhel} <= 6
+%{!?__python2: %global __python2 /usr/bin/python2}
+%{!?python2_sitelib: %global python2_sitelib %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")}
+%endif
+
 %global archive_name ansible-lint
 %global lib_name ansiblelint
 
 Name:           %{archive_name}
-Version:        1.0.4
+Version:        2.0.1
 Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
@@ -23,19 +28,27 @@ Checks playbooks for practices and behavior that could potentially be improved
 %setup -q -n %{archive_name}-%{version}
 rm -rf *.egg-info
 
+find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
+
 %build
-%{__python} setup.py build
+%{__python2} setup.py build
 
 %install
-%{__python} setup.py install --skip-build --root=%{buildroot}
+%{__python2} setup.py install --skip-build --root=%{buildroot}
+
+%check
+%{__python2} setup.py test
 
 %files
 %doc PKG-INFO LICENSE
 %{_bindir}/%{name}
-%{python_sitelib}/%{lib_name}
-%{python_sitelib}/ansible_lint-%{version}-py2.?.egg-info
+%{python2_sitelib}/%{lib_name}
+%{python2_sitelib}/ansible_lint-%{version}-py2.*.egg-info
 
 %changelog
+* Fri Dec 05 2014 Parag Nemade <pnemade AT redhat DOT com> - 2.0.1-1
+- Update to 2.0.1
+
 * Mon Oct 27 2014 Parag Nemade <pnemade AT redhat DOT com> - 1.0.4-1
 - rename to ansible-lint
 - new upstream 1.0.4 release which added LICENSE file.
