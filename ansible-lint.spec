@@ -3,7 +3,7 @@
 
 Name:           %{archive_name}
 Version:        2.0.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -41,6 +41,9 @@ find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 %{python2_sitelib}/ansible_lint-%{version}-py2.*.egg-info
 
 %changelog
+* Tue Jun 16 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.0.3-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
+
 * Thu Jan 08 2015 Parag Nemade <pnemade AT redhat DOT com> - 2.0.3-1
 - Update to 2.0.3
 
