@@ -35,7 +35,8 @@ find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 %{__python2} setup.py test
 
 %files
-%doc PKG-INFO LICENSE
+%doc PKG-INFO 
+%license LICENSE
 %{_bindir}/%{name}
 %{python2_sitelib}/%{lib_name}
 %{python2_sitelib}/ansible_lint-%{version}-py2.*.egg-info
