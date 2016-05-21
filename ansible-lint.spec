@@ -2,7 +2,7 @@
 %global lib_name ansiblelint
 
 Name:           %{archive_name}
-Version:        2.0.1
+Version:        2.6.2
 Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
@@ -31,16 +31,23 @@ find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 %install
 %{__python2} setup.py install --skip-build --root=%{buildroot}
 
-%check
-%{__python2} setup.py test
+# disabled as there is no tests to run
+#%check
+#%{__python2} setup.py test
 
 %files
-%doc PKG-INFO LICENSE
+%doc PKG-INFO
+%license LICENSE
 %{_bindir}/%{name}
 %{python2_sitelib}/%{lib_name}
 %{python2_sitelib}/ansible_lint-%{version}-py2.*.egg-info
 
 %changelog
+* Sat May 21 2016 Parag Nemade <pnemade AT redhat DOT com> - 2.6.2-1
+- Update to 2.6.2
+- use %license macro
+- disable tests
+
 * Fri Dec 05 2014 Parag Nemade <pnemade AT redhat DOT com> - 2.0.1-1
 - Update to 2.0.1
 
