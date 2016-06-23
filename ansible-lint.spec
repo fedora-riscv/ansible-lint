@@ -2,13 +2,13 @@
 %global lib_name ansiblelint
 
 Name:           %{archive_name}
-Version:        2.6.2
+Version:        3.0.0
 Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
 URL:            https://github.com/willthames/ansible-lint
-Source0:        https://pypi.python.org/packages/source/a/%{archive_name}/%{archive_name}-%{version}.tar.gz
+Source0:        https://pypi.python.org/packages/b5/4f/dd446c962ff09da8df88c7698761a603ab9038fcc97ec15e1eebebf0b427/%{archive_name}-%{version}.tar.gz
 
 BuildArch:      noarch
 BuildRequires:  python2-devel
@@ -43,6 +43,9 @@ find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 %{python2_sitelib}/ansible_lint-%{version}-py2.*.egg-info
 
 %changelog
+* Thu Jun 23 2016 Parag Nemade <pnemade AT redhat DOT com> - 3.0.0-1
+- Update to 3.0.0 release
+
 * Sat May 21 2016 Parag Nemade <pnemade AT redhat DOT com> - 2.6.2-1
 - Update to 2.6.2
 - use %license macro
