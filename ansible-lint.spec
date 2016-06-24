@@ -3,7 +3,7 @@
 
 Name:           %{archive_name}
 Version:        3.0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -42,8 +42,11 @@ find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 %{python2_sitelib}/ansible_lint-%{version}-py2.*.egg-info
 
 %changelog
+* Fri Jun 24 2016 Parag Nemade <pnemade AT redhat DOT com> - 3.0.1-2
+- Fixed typo in previous changelog entry
+
 * Fri Jun 24 2016 Parag Nemade <pnemade AT redhat DOT com> - 3.0.1-1
-- Update to 3.0.0 release
+- Update to 3.0.1 release
 
 * Thu Jun 23 2016 Parag Nemade <pnemade AT redhat DOT com> - 3.0.0-1
 - Update to 3.0.0 release
