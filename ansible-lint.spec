@@ -43,7 +43,7 @@ find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 
 %changelog
 * Wed Jun 29 2016 Parag Nemade <pnemade AT redhat DOT com> - 3.1.0-1
-- Fixed typo in previous changelog entry
+- Upstream release 3.1.0
 
 * Fri Jun 24 2016 Parag Nemade <pnemade AT redhat DOT com> - 3.0.1-2
 - Fixed typo in previous changelog entry
