@@ -36,7 +36,7 @@ find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 #%{__python2} setup.py test
 
 %files
-%doc PKG-INFO
+%doc README.md
 %license LICENSE
 %{_bindir}/%{name}
 %{python2_sitelib}/%{lib_name}
