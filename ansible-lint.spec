@@ -2,7 +2,7 @@
 %global lib_name ansiblelint
 
 Name:           %{archive_name}
-Version:        3.2.1
+Version:        3.2.4
 Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
@@ -42,6 +42,9 @@ find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 %{python2_sitelib}/ansible_lint-%{version}-py2.*.egg-info
 
 %changelog
+* Thu Jul 28 2016 Parag Nemade <pnemade AT redhat DOT com> - 3.2.4-1
+- Update to 3.2.4
+
 * Wed Jul 27 2016 Parag Nemade <pnemade AT redhat DOT com> - 3.2.1-1
 - Upstream release 3.2.1
 
