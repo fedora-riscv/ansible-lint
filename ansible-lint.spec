@@ -2,7 +2,7 @@
 %global lib_name ansiblelint
 
 Name:           %{archive_name}
-Version:        3.4.1
+Version:        3.4.9
 Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
@@ -20,20 +20,19 @@ Requires:       ansible
 Checks playbooks for practices and behavior that could potentially be improved
 
 %prep
-%setup -q -n %{archive_name}-%{version}
+%autosetup -n %{archive_name}-%{version}
 rm -rf *.egg-info
 
 find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 
 %build
-%{__python2} setup.py build
+%py2_build
 
 %install
-%{__python2} setup.py install --skip-build --root=%{buildroot}
+%py2_install
 
-# disabled as there is no tests to run
-#%check
-#%{__python2} setup.py test
+%check
+%{__python2} setup.py test
 
 %files
 %doc README.md
@@ -43,6 +42,21 @@ find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 %{python2_sitelib}/ansible_lint-%{version}-py2.*.egg-info
 
 %changelog
+* Thu Dec 22 2016 Parag Nemade <pnemade AT redhat DOT com> - 3.4.9-1
+- Update to 3.4.9
+
+* Fri Dec 16 2016 Parag Nemade <pnemade AT redhat DOT com> - 3.4.8-1
+- Update to 3.4.8
+
+* Mon Dec 05 2016 Parag Nemade <pnemade AT redhat DOT com> - 3.4.7-1
+- Update to 3.4.7
+
+* Tue Nov 15 2016 Parag Nemade <pnemade AT redhat DOT com> - 3.4.4-1
+- Update to 3.4.4
+
+* Tue Nov 08 2016 Parag Nemade <pnemade AT redhat DOT com> - 3.4.3-1
+- Update to 3.4.3
+
 * Fri Oct 28 2016 Parag Nemade <pnemade AT redhat DOT com> - 3.4.1-1
 - Update to 3.4.1
 
@@ -50,7 +64,7 @@ find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 - Update to 3.3.3
 
 * Fri Jul 15 2016 Parag Nemade <pnemade AT redhat DOT com> - 3.1.3-1
-- Update to 3.1.3 release
+- Upstream release 3.1.3
 
 * Fri Jun 24 2016 Parag Nemade <pnemade AT redhat DOT com> - 3.0.1-2
 - Fixed typo in previous changelog entry
