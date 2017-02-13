@@ -2,8 +2,8 @@
 %global lib_name ansiblelint
 
 Name:           %{archive_name}
-Version:        3.4.10
-Release:        2%{?dist}
+Version:        3.4.11
+Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -42,6 +42,9 @@ find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 %{python2_sitelib}/ansible_lint-%{version}-py2.*.egg-info
 
 %changelog
+* Mon Feb 13 2017 Parag Nemade <pnemade AT redhat DOT com> - 3.4.11-1
+- Update to 3.4.11
+
 * Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 3.4.10-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
