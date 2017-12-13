@@ -3,7 +3,7 @@
 
 Name:           %{archive_name}
 Version:        3.4.19
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -11,37 +11,73 @@ URL:            https://github.com/willthames/ansible-lint
 Source0:        https://github.com/willthames/%{archive_name}/archive/v%{version}.tar.gz
 
 BuildArch:      noarch
+
+%global _description\
+Checks playbooks for practices and behavior that could potentially be improved\
+
+%description %_description
+
+%package -n python2-%{archive_name}
+Summary:        %summary
 BuildRequires:  python2-devel
-BuildRequires:  python-setuptools
+BuildRequires:  python2-setuptools
 BuildRequires:  ansible
 Requires:       ansible
+%{?python_provide:%python_provide python2-%{archive_name}}
+Provides:       %{archive_name} = %{version}-%{release}
+Obsoletes:      %{archive_name} < 3.4.19-2
 
-%description
-Checks playbooks for practices and behavior that could potentially be improved
+%description  -n python2-%{archive_name} %_description
+
+%package -n python3-%{archive_name}
+Summary:        %summary
+BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
+BuildRequires:  ansible-python3
+Requires:       ansible-python3
+%{?python_provide:%python_provide python3-%{archive_name}}
+
+%description  -n python3-%{archive_name} %_description
 
 %prep
 %autosetup -n %{archive_name}-%{version}
-rm -rf *.egg-info
-
-find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 
 %build
 %py2_build
+%py3_build
 
 %install
+%py3_install
+# Rename Python 3 executable file
+mv %{buildroot}%{_bindir}/%{name} %{buildroot}%{_bindir}/%{name}-3
+
 %py2_install
 
 %check
 %{__python2} setup.py test
+# Remove temporarily tests that fail in Python 3
+rm test/TestCommandLineInvocationSameAsConfig.py
+%{__python3} setup.py test
 
-%files
+%files -n python2-%{archive_name}
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}
 %{python2_sitelib}/%{lib_name}
 %{python2_sitelib}/ansible_lint-%{version}-py2.*.egg-info
 
+%files -n python3-%{archive_name}
+%doc README.md
+%license LICENSE
+%{_bindir}/%{name}-3
+%{python3_sitelib}/%{lib_name}
+%{python3_sitelib}/ansible_lint-%{version}-py3.*.egg-info
+
 %changelog
+* Wed Dec 13 2017 Jan Beran <jberan@redhat.com> - 3.4.19-2
+- Python 2 binary package renamed to python2-ansible-lint
+- Python 3 subpackage
+
 * Mon Dec 11 2017 Parag Nemade <pnemade AT redhat DOT com> - 3.4.19-1
 - Update to 3.4.19 version (#1524156)
 
