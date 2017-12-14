@@ -3,7 +3,7 @@
 
 Name:           %{archive_name}
 Version:        3.4.19
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -54,10 +54,11 @@ mv %{buildroot}%{_bindir}/%{name} %{buildroot}%{_bindir}/%{name}-3
 %py2_install
 
 %check
-%{__python2} setup.py test
-# Remove temporarily tests that fail in Python 3
-rm test/TestCommandLineInvocationSameAsConfig.py
-%{__python3} setup.py test
+# Following sed execution is necessary for test/TestCommandLineInvocationSameAsConfig.py
+sed -i 's|/usr/bin/env python|%{_bindir}/python2|' bin/ansible-lint
+PYTHONPATH=%{buildroot}%{python2_sitelib} %{__python2} setup.py test
+sed -i 's|%{_bindir}/python2|%{_bindir}/python3|' bin/ansible-lint
+PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 
 %files -n python2-%{archive_name}
 %doc README.md
@@ -74,6 +75,9 @@ rm test/TestCommandLineInvocationSameAsConfig.py
 %{python3_sitelib}/ansible_lint-%{version}-py3.*.egg-info
 
 %changelog
+* Thu Dec 14 2017 Parag Nemade <pnemade AT redhat DOT com> - 3.4.19-3
+- Fix the test/TestCommandLineInvocationSameAsConfig.py execution for python3
+
 * Wed Dec 13 2017 Jan Beran <jberan@redhat.com> - 3.4.19-2
 - Python 2 binary package renamed to python2-ansible-lint
 - Python 3 subpackage
