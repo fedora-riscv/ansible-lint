@@ -2,8 +2,8 @@
 %global lib_name ansiblelint
 
 Name:           %{archive_name}
-Version:        3.4.19
-Release:        3%{?dist}
+Version:        3.4.20
+Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -75,6 +75,9 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 %{python3_sitelib}/ansible_lint-%{version}-py3.*.egg-info
 
 %changelog
+* Thu Dec 21 2017 Parag Nemade <pnemade AT redhat DOT com> - 3.4.20-1
+- Update to 3.4.20 version (#1528085)
+
 * Thu Dec 14 2017 Parag Nemade <pnemade AT redhat DOT com> - 3.4.19-3
 - Fix the test/TestCommandLineInvocationSameAsConfig.py execution for python3
 
