@@ -32,7 +32,7 @@ find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 %py2_install
 
 %check
-%{__python2} setup.py test
+PYTHONPATH=%{buildroot}%{python2_sitelib} %{__python2} setup.py test
 
 %files
 %doc README.md
