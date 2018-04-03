@@ -1,9 +1,16 @@
 %global archive_name ansible-lint
 %global lib_name ansiblelint
 
+%if 0%{?fedora} >= 29 || 0%{?rhel} >= 8
+# Ansible stopped shipping Python 2 modules in Fedora 29+
+%bcond_with python2
+%else
+%bcond_without python2
+%endif
+
 Name:           %{archive_name}
 Version:        3.4.21
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -17,25 +24,39 @@ Checks playbooks for practices and behavior that could potentially be improved\
 
 %description %_description
 
+%if %{with python2}
 %package -n python2-%{archive_name}
 Summary:        %summary
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
 BuildRequires:  ansible
+BuildRequires:  python2-pyyaml
+BuildRequires:  python2-six
 Requires:       ansible
+Requires:       python2-pyyaml
+Requires:       python2-six
 %{?python_provide:%python_provide python2-%{archive_name}}
 Provides:       %{archive_name} = %{version}-%{release}
 Obsoletes:      %{archive_name} < 3.4.19-2
 
 %description  -n python2-%{archive_name} %_description
+%endif
 
 %package -n python3-%{archive_name}
 Summary:        %summary
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 BuildRequires:  ansible-python3
+BuildRequires:  python3-PyYAML
+BuildRequires:  python3-six
 Requires:       ansible-python3
+Requires:       python3-PyYAML
+Requires:       python3-six
 %{?python_provide:%python_provide python3-%{archive_name}}
+%if ! %{with python2}
+Provides:       %{archive_name} = %{version}-%{release}
+Obsoletes:      %{archive_name} < 3.4.21-2
+%endif
 
 %description  -n python3-%{archive_name} %_description
 
@@ -43,38 +64,59 @@ Requires:       ansible-python3
 %autosetup -n %{archive_name}-%{version}
 
 %build
+%if %{with python2}
 %py2_build
+%endif
 %py3_build
 
 %install
 %py3_install
-# Rename Python 3 executable file
+# On older releases, which still have Python 2, you will get:
+#   ansible-lint => Python 2
+#   ansible-lint-3 => Python 3
+# On newer releases, which only have Python 3, you will get:
+#   ansible-lint => Python 3
+#   ansible-lint-3 => Python 3 (to avoid breaking anyone's scripts)
+%if %{with python2}
 mv %{buildroot}%{_bindir}/%{name} %{buildroot}%{_bindir}/%{name}-3
-
 %py2_install
+%else
+ln -s %{_bindir}/%{name} %{buildroot}%{_bindir}/%{name}-3
+%endif
 
 %check
 # Following sed execution is necessary for test/TestCommandLineInvocationSameAsConfig.py
-sed -i 's|/usr/bin/env python|%{_bindir}/python2|' bin/ansible-lint
+%if %{with python2}
+sed -i -e '/^#!/c\#!%{_bindir}/python2' bin/ansible-lint
 PYTHONPATH=%{buildroot}%{python2_sitelib} %{__python2} setup.py test
-sed -i 's|%{_bindir}/python2|%{_bindir}/python3|' bin/ansible-lint
+%endif
+sed -i -e '/^#!/c\#!%{_bindir}/python3' bin/ansible-lint
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 
+%if %{with python2}
 %files -n python2-%{archive_name}
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}
 %{python2_sitelib}/%{lib_name}
 %{python2_sitelib}/ansible_lint-%{version}-py2.*.egg-info
+%endif
 
 %files -n python3-%{archive_name}
 %doc README.md
 %license LICENSE
+%if ! %{with python2}
+%{_bindir}/%{name}
+%endif
 %{_bindir}/%{name}-3
 %{python3_sitelib}/%{lib_name}
 %{python3_sitelib}/ansible_lint-%{version}-py3.*.egg-info
 
 %changelog
+* Tue Apr 03 2018 Dan Callaghan <dcallagh@redhat.com> - 3.4.21-2
+- no longer building Python 2 bits in releases which have dropped Python 2
+- added missing requirements on PyYAML and six
+
 * Wed Mar 14 2018 Parag Nemade <pnemade AT redhat DOT com> - 3.4.21-1
 - Update to 3.4.21 version (#1555095)
 
