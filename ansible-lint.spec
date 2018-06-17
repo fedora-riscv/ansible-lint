@@ -9,8 +9,8 @@
 %endif
 
 Name:           %{archive_name}
-Version:        3.4.21
-Release:        2%{?dist}
+Version:        3.4.22
+Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -113,6 +113,9 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 %{python3_sitelib}/ansible_lint-%{version}-py3.*.egg-info
 
 %changelog
+* Sun Jun 17 2018 Parag Nemade <pnemade AT redhat DOT com> - 3.4.22-1
+- Update to 3.4.22 version (#1559645)
+
 * Tue Apr 03 2018 Dan Callaghan <dcallagh@redhat.com> - 3.4.21-2
 - no longer building Python 2 bits in releases which have dropped Python 2
 - added missing requirements on PyYAML and six
