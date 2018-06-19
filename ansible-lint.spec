@@ -10,7 +10,7 @@
 
 Name:           %{archive_name}
 Version:        3.4.23
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -113,6 +113,9 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 %{python3_sitelib}/ansible_lint-%{version}-py3.*.egg-info
 
 %changelog
+* Tue Jun 19 2018 Miro Hrončok <mhroncok@redhat.com> - 3.4.23-2
+- Rebuilt for Python 3.7
+
 * Mon Jun 18 2018 Parag Nemade <pnemade AT redhat DOT com> - 3.4.23-1
 - Update to 3.4.23 version (#1592159)
 
