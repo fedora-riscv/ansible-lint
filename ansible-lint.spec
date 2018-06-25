@@ -10,7 +10,7 @@
 
 Name:           %{archive_name}
 Version:        3.4.23
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -57,6 +57,9 @@ Requires:       python3-six
 Provides:       %{archive_name} = %{version}-%{release}
 Obsoletes:      %{archive_name} < 3.4.21-2
 %endif
+# /usr/bin/ansible-lint moved from the python2 subpackage
+# to the python3 subpackage in 3.4.21-2
+Conflicts:      python2-%{archive_name} < 3.4.21-2
 
 %description  -n python3-%{archive_name} %_description
 
@@ -113,6 +116,10 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 %{python3_sitelib}/ansible_lint-%{version}-py3.*.egg-info
 
 %changelog
+* Mon Jun 25 2018 Dan Callaghan <dcallagh@redhat.com> - 3.4.23-3
+- python3-ansible-lint conflicts with python2-ansible-lint because
+  /usr/bin/ansible-lint moved between subpackages
+
 * Tue Jun 19 2018 Miro Hrončok <mhroncok@redhat.com> - 3.4.23-2
 - Rebuilt for Python 3.7
 
