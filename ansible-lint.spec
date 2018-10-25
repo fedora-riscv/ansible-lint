@@ -27,6 +27,7 @@ Requires:       python3-PyYAML
 Requires:       python3-six
 %{?python_provide:%python_provide python3-%{archive_name}}
 Obsoletes:      python2-%{archive_name} < 3.4.23-6
+Provides:       %{archive_name} = %{version}-%{release}
 
 %description  -n python3-%{archive_name}
 Python3 module for ansible-lint.
@@ -58,6 +59,9 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 %{python3_sitelib}/ansible_lint-%{version}-py3.*.egg-info
 
 %changelog
+* Thu Oct 25 2018 Parag Nemade <pnemade AT redhat DOT com> - 3.4.23-7
+- Add back Provides: ansible-lint
+
 * Sun Oct 07 2018 Parag Nemade <pnemade AT redhat DOT com> - 3.4.23-6
 - Fix the upgrade path (rh#1634352)
 
