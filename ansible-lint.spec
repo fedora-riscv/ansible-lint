@@ -3,7 +3,7 @@
 
 Name:           %{archive_name}
 Version:        3.4.23
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
