@@ -19,9 +19,12 @@ Checks playbooks for practices and behavior that could potentially be improved.
 Summary:        %summary
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
+BuildRequires:  python3-setuptools_scm_git_archive
 BuildRequires:  ansible-python3
 BuildRequires:  python3-PyYAML
 BuildRequires:  python3-six
+BuildRequires:  python3-ruamel-yaml
+
 Requires:       ansible-python3
 Requires:       python3-PyYAML
 Requires:       python3-six
@@ -51,7 +54,7 @@ sed -i -e '/^#!/c\#!%{_bindir}/python3' bin/ansible-lint
 PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 
 %files -n python3-%{archive_name}
-%doc README.md
+%doc README.rst ROADMAP.rst CHANGELOG.rst examples
 %license LICENSE
 %{_bindir}/%{name}
 %{_bindir}/%{name}-3
