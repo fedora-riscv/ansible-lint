@@ -2,7 +2,7 @@
 %global lib_name ansiblelint
 
 Name:           %{archive_name}
-Version:        3.4.21
+Version:        3.5.1
 Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
@@ -14,6 +14,7 @@ BuildArch:      noarch
 BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
 BuildRequires:  ansible
+
 Requires:       ansible
 
 %description
@@ -42,6 +43,9 @@ PYTHONPATH=%{buildroot}%{python2_sitelib} %{__python2} setup.py test
 %{python2_sitelib}/ansible_lint-%{version}-py2.*.egg-info
 
 %changelog
+* Thu Mar 21 2019 Parag Nemade <pnemade AT redhat DOT com> - 3.5.1-1
+- build 3.5.1 upstream release
+
 * Wed Mar 14 2018 Parag Nemade <pnemade AT redhat DOT com> - 3.4.21-1
 - Update to 3.4.21 version (#1555095)
 
