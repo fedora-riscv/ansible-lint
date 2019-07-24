@@ -3,7 +3,7 @@
 
 Name:           %{archive_name}
 Version:        4.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -62,6 +62,9 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 %{python3_sitelib}/ansible_lint-%{version}-py3.*.egg-info
 
 %changelog
+* Wed Jul 24 2019 Fedora Release Engineering <releng@fedoraproject.org> - 4.1.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
 * Wed Feb 13 2019 Parag Nemade <pnemade AT redhat DOT com> - 4.1.0-1
 - Update to 4.1.0 version (#1674307)
 
