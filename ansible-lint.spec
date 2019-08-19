@@ -3,7 +3,7 @@
 
 Name:           %{archive_name}
 Version:        4.1.1a0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -62,6 +62,9 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 %{python3_sitelib}/ansible_lint-%{version}-py3.*.egg-info
 
 %changelog
+* Mon Aug 19 2019 Miro Hrončok <mhroncok@redhat.com> - 4.1.1a0-2
+- Rebuilt for Python 3.8
+
 * Sat Aug 17 2019 Parag Nemade <pnemade AT redhat DOT com> - 4.1.1a0-1
 - Update to 4.1.1a0 version (#1742505)
 
