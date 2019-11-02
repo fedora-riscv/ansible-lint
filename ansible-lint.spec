@@ -2,8 +2,8 @@
 %global lib_name ansiblelint
 
 Name:           %{archive_name}
-Version:        4.1.1a2
-Release:        1%{?dist}
+Version:        4.1.1a0
+Release:        4%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -20,12 +20,12 @@ Summary:        %summary
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm_git_archive
-BuildRequires:  ansible-python3
+BuildRequires:  ansible
 BuildRequires:  python3-PyYAML
 BuildRequires:  python3-six
 BuildRequires:  python3-ruamel-yaml
 
-Requires:       ansible-python3
+Requires:       ansible
 Requires:       python3-PyYAML
 Requires:       python3-six
 %{?python_provide:%python_provide python3-%{archive_name}}
@@ -62,8 +62,8 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 %{python3_sitelib}/ansible_lint-%{version}-py3.*.egg-info
 
 %changelog
-* Tue Oct 29 2019 Parag Nemade <pnemade AT redhat DOT com> - 4.1.1a2-1
-- Update to 4.1.1a2 version (#1765630)
+* Sat Nov 02 2019 Parag Nemade <pnemade AT redhat DOT com> - 4.1.1a0-4
+- Fix dependency ansible-python3 to ansible
 
 * Thu Oct 03 2019 Miro Hrončok <mhroncok@redhat.com> - 4.1.1a0-3
 - Rebuilt for Python 3.8.0rc1 (#1748018)
