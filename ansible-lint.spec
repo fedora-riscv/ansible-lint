@@ -2,8 +2,8 @@
 %global lib_name ansiblelint
 
 Name:           %{archive_name}
-Version:        4.1.1a0
-Release:        4%{?dist}
+Version:        4.1.1a3
+Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -62,6 +62,9 @@ PYTHONPATH=%{buildroot}%{python3_sitelib} %{__python3} setup.py test
 %{python3_sitelib}/ansible_lint-%{version}-py3.*.egg-info
 
 %changelog
+* Mon Nov 04 2019 Parag Nemade <pnemade AT redhat DOT com> - 4.1.1a3-1
+- Update to 4.1.1a3 version (#1765630)
+
 * Sat Nov 02 2019 Parag Nemade <pnemade AT redhat DOT com> - 4.1.1a0-4
 - Fix dependency ansible-python3 to ansible
 
