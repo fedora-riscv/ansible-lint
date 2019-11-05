@@ -3,7 +3,7 @@
 
 Name:           %{archive_name}
 Version:        4.1.1a3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -58,6 +58,7 @@ ln -s %{_bindir}/%{name} %{buildroot}%{_bindir}/%{name}-3
 %check
 # Following sed execution is necessary for test/TestCommandLineInvocationSameAsConfig.py
 sed -i -e '/^#!/c\#!%{_bindir}/python3' bin/ansible-lint
+export PYTHONPATH=%{buildroot}/%{python3_sitelib}
 # some tests are failing
 %{__python3} -m pytest -v test/Test*.py || :
 
@@ -70,6 +71,9 @@ sed -i -e '/^#!/c\#!%{_bindir}/python3' bin/ansible-lint
 %{python3_sitelib}/ansible_lint-%{version}.dist-info
 
 %changelog
+* Tue Nov 05 2019 Parag Nemade <pnemade AT redhat DOT com> - 4.1.1a3-2
+- Fix test run in %%check
+
 * Tue Nov 05 2019 Parag Nemade <pnemade AT redhat DOT com> - 4.1.1a3-1
 - Update to 4.1.1a3 version (#1765630)
 
