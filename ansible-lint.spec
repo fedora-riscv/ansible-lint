@@ -2,8 +2,8 @@
 %global lib_name ansiblelint
 
 Name:           %{archive_name}
-Version:        4.1.1a3
-Release:        2%{?dist}
+Version:        4.1.1a5
+Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -71,6 +71,9 @@ export PYTHONPATH=%{buildroot}/%{python3_sitelib}
 %{python3_sitelib}/ansible_lint-%{version}.dist-info
 
 %changelog
+* Tue Nov 12 2019 Parag Nemade <pnemade AT redhat DOT com> - 4.1.1a5-1
+- Update to 4.1.1a5 version (#1771098)
+
 * Tue Nov 05 2019 Parag Nemade <pnemade AT redhat DOT com> - 4.1.1a3-2
 - Fix test run in %%check
 
