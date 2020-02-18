@@ -2,8 +2,8 @@
 %global lib_name ansiblelint
 
 Name:           %{archive_name}
-Version:        4.2.0a1
-Release:        2%{?dist}
+Version:        4.2.0
+Release:        3%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -71,6 +71,9 @@ export PYTHONPATH=%{buildroot}/%{python3_sitelib}
 %{python3_sitelib}/ansible_lint-%{version}.dist-info
 
 %changelog
+* Tue Feb 18 2020 Parag Nemade <pnemade AT redhat DOT com> - 4.2.0-3
+- Update to 4.2.0 GA release
+
 * Tue Jan 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 4.2.0a1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
