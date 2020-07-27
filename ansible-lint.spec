@@ -3,7 +3,7 @@
 
 Name:           %{archive_name}
 Version:        4.2.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -71,6 +71,9 @@ export PYTHONPATH=%{buildroot}/%{python3_sitelib}
 %{python3_sitelib}/ansible_lint-%{version}.dist-info
 
 %changelog
+* Mon Jul 27 2020 Fedora Release Engineering <releng@fedoraproject.org> - 4.2.0-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
+
 * Tue May 26 2020 Miro Hrončok <mhroncok@redhat.com> - 4.2.0-4
 - Rebuilt for Python 3.9
 
