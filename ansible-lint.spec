@@ -44,6 +44,7 @@ Python3 module for ansible-lint.
 %prep
 %autosetup -n %{archive_name}-%{version}
 
+%generate_buildrequires
 %pyproject_buildrequires
 
 %build
