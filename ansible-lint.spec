@@ -18,22 +18,7 @@ BuildRequires:	pyproject-rpm-macros
 Checks playbooks for practices and behavior that could potentially be improved.
 
 %package -n python3-%{archive_name}
-Summary:        %summary
-BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
-BuildRequires:  python3dist(setuptools-scm-git-archive)
-
-BuildRequires:  ansible
-BuildRequires:  python3dist(six)
-BuildRequires:  python3dist(ruamel.yaml)
-BuildRequires:  python3dist(wheel)
-BuildRequires:  python3dist(pytest)
-BuildRequires:  python3dist(pytest-cov)
-
-Requires:       ansible
-Requires:       python3dist(six)
-Requires:       python3dist(ruamel.yaml)
-
+Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{archive_name}}
 Obsoletes:      python2-%{archive_name} < 3.4.23-6
 Provides:       %{archive_name} = %{version}-%{release}
@@ -55,22 +40,15 @@ Python3 module for ansible-lint.
 # On newer releases, which only have Python 3, you will get:
 #   ansible-lint => Python 3
 #   ansible-lint-3 => Python 3 (to avoid breaking anyone's scripts)
-ln -s %{_bindir}/%{name} %{buildroot}%{_bindir}/%{name}-3
-
-%check
-# Following sed execution is necessary for test/TestCommandLineInvocationSameAsConfig.py
-sed -i -e '/^#!/c\#!%{_bindir}/python3' bin/ansible-lint
-export PYTHONPATH=%{buildroot}/%{python3_sitelib}
-# some tests are failing
-%{__python3} -m pytest -v test/Test*.py || :
+ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 
 %files -n python3-%{archive_name}
-%doc README.rst ROADMAP.rst CHANGELOG.rst examples
+%doc README.rst CHANGELOG.rst examples
 %license LICENSE
 %{_bindir}/%{name}
 %{_bindir}/%{name}-3
-%{python3_sitelib}/%{lib_name}
-%{python3_sitelib}/ansible_lint-%{version}.dist-info
+%{python3_sitelib}/%{lib_name}/
+%{python3_sitelib}/ansible_lint-%{version}.dist-info/
 
 %changelog
 * Thu Aug 20 2020 Igor Raits <ignatenkobrain@fedoraproject.org> - 1:4.3.0-1
