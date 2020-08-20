@@ -3,8 +3,8 @@
 
 Name:           %{archive_name}
 Epoch:          1
-Version:        4.2.0
-Release:        6%{?dist}
+Version:        4.3.0
+Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -72,6 +72,9 @@ export PYTHONPATH=%{buildroot}/%{python3_sitelib}
 %{python3_sitelib}/ansible_lint-%{version}.dist-info
 
 %changelog
+* Thu Aug 20 2020 Igor Raits <ignatenkobrain@fedoraproject.org> - 1:4.3.0-1
+- Update to 4.3.0
+
 * Mon Aug 03 2020 Igor Raits <ignatenkobrain@fedoraproject.org> - 1:4.2.0-6
 - Bump epoch to fix upgradepath
 
