@@ -3,7 +3,7 @@
 
 Name:           %{archive_name}
 Epoch:          1
-Version:        4.3.0
+Version:        4.3.1
 Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
@@ -51,6 +51,9 @@ ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 %{python3_sitelib}/ansible_lint-%{version}.dist-info/
 
 %changelog
+* Fri Aug 21 2020 Parag Nemade <pnemade AT redhat DOT com> - 1:4.3.1-1
+- Update to 4.3.1 version (#1821916)
+
 * Thu Aug 20 2020 Igor Raits <ignatenkobrain@fedoraproject.org> - 1:4.3.0-1
 - Update to 4.3.0
 
