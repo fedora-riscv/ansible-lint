@@ -4,7 +4,7 @@
 Name:           %{archive_name}
 Epoch:          1
 Version:        4.3.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -51,6 +51,9 @@ ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 %{python3_sitelib}/ansible_lint-%{version}.dist-info/
 
 %changelog
+* Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1:4.3.7-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
 * Thu Nov  5 09:45:28 IST 2020 Parag Nemade <pnemade AT redhat DOT com> - 1:4.3.7-1
 - Update to 4.3.7 version (#1894320)
 
