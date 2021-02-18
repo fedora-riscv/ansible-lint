@@ -43,7 +43,7 @@ Python3 module for ansible-lint.
 ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 
 %files -n python3-%{archive_name}
-%doc README.rst CHANGELOG.rst examples
+%doc README.rst examples
 %license LICENSE
 %{_bindir}/%{name}
 %{_bindir}/%{name}-3
