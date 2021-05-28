@@ -3,7 +3,7 @@
 
 Name:           %{archive_name}
 Epoch:          1
-Version:        5.0.10
+Version:        5.0.11
 Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
@@ -51,6 +51,9 @@ ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 %{python3_sitelib}/ansible_lint-%{version}.dist-info/
 
 %changelog
+* Fri May 28 2021 Parag Nemade <pnemade AT redhat DOT com> - 1:5.0.11-1
+- Update to 5.0.11 version (#1963877)
+
 * Fri May 21 2021 Parag Nemade <pnemade AT redhat DOT com> - 1:5.0.10-1
 - Update to 5.0.10 version (#1963149)
 
