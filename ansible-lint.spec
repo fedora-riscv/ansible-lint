@@ -3,8 +3,8 @@
 
 Name:           %{archive_name}
 Epoch:          1
-Version:        5.0.11
-Release:        2%{?dist}
+Version:        5.0.12
+Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -51,6 +51,9 @@ ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 %{python3_sitelib}/ansible_lint-%{version}.dist-info/
 
 %changelog
+* Tue Jun 08 2021 Parag Nemade <pnemade AT redhat DOT com> - 1:5.0.12-1
+- Update to 5.0.12 version (#1967909)
+
 * Fri Jun 04 2021 Python Maint <python-maint@redhat.com> - 1:5.0.11-2
 - Rebuilt for Python 3.10
 
