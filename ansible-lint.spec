@@ -4,7 +4,7 @@
 Name:           %{archive_name}
 Epoch:          1
 Version:        5.1.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -51,6 +51,9 @@ ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 %{python3_sitelib}/ansible_lint-%{version}.dist-info/
 
 %changelog
+* Wed Jul 21 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1:5.1.2-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
+
 * Mon Jul 19 2021 Parag Nemade <pnemade AT redhat DOT com> - 1:5.1.2-1
 - Update to 5.1.2 version (#1983170)
 
