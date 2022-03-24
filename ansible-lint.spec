@@ -7,9 +7,9 @@ Version:        6.0.1
 Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
-License:        MIT
-URL:            https://github.com/willthames/ansible-lint
-Source0:        https://github.com/willthames/%{archive_name}/archive/v%{version}.tar.gz
+License:        GPLv3
+URL:            https://github.com/ansible/ansible-lint
+Source0:        https://github.com/ansible/%{archive_name}/archive/v%{version}.tar.gz
 
 BuildArch:      noarch
 BuildRequires:	pyproject-rpm-macros
@@ -44,7 +44,7 @@ ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 
 %files -n python3-%{archive_name}
 %doc README.rst examples
-%license LICENSE
+%license COPYING
 %{_bindir}/%{name}
 %{_bindir}/%{name}-3
 %{python3_sitelib}/%{lib_name}/
@@ -53,6 +53,7 @@ ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 %changelog
 * Wed Mar 23 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:6.0.1-1
 - Update to 6.0.1 version (#2065857)
+- License changed from MIT to GPLv3
 
 * Sun Feb 13 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:5.4.0-1
 - Update to 5.4.0 version (#2053887)
