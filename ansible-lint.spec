@@ -3,7 +3,7 @@
 
 Name:           %{archive_name}
 Epoch:          1
-Version:        6.0.1
+Version:        6.0.2
 Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
@@ -51,6 +51,9 @@ ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 %{python3_sitelib}/ansible_lint-%{version}.dist-info/
 
 %changelog
+* Mon Mar 28 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:6.0.2-1
+- Update to 6.0.2 version (#2067984)
+
 * Wed Mar 23 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:6.0.1-1
 - Update to 6.0.1 version (#2065857)
 - License changed from MIT to GPLv3
