@@ -4,7 +4,7 @@
 Name:           %{archive_name}
 Epoch:          1
 Version:        5.1.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -22,6 +22,9 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{archive_name}}
 Obsoletes:      python2-%{archive_name} < 3.4.23-6
 Provides:       %{archive_name} = %{version}-%{release}
+
+# Finally fixing this https://bugzilla.redhat.com/show_bug.cgi?id=1949362
+Requires:       /usr/bin/ansible
 
 %description  -n python3-%{archive_name}
 Python3 module for ansible-lint.
@@ -51,6 +54,9 @@ ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 %{python3_sitelib}/ansible_lint-%{version}.dist-info/
 
 %changelog
+* Tue May 31 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:5.1.2-3
++ Requires: /usr/bin/ansible (#1949362)
+
 * Wed Jul 21 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1:5.1.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 
