@@ -23,11 +23,16 @@ Summary:        %{summary}
 Obsoletes:      python2-%{archive_name} < 3.4.23-6
 Provides:       %{archive_name} = %{version}-%{release}
 
+# Finally fixing this https://bugzilla.redhat.com/show_bug.cgi?id=1949362
+Requires:       /usr/bin/ansible
+
 %description  -n python3-%{archive_name}
 Python3 module for ansible-lint.
 
 %prep
 %autosetup -n %{archive_name}-%{version}
+sed -i 's/4.5.1/3.2.0/g' requirements.txt
+sed -i 's/4.5.1/3.2.0/g' setup.cfg
 
 %generate_buildrequires
 %pyproject_buildrequires
@@ -53,6 +58,7 @@ ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 %changelog
 * Fri May 13 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:6.1.0-1
 - Update to 6.1.0 version (#2083644)
+- Requires: /usr/bin/ansible (#1949362)
 
 * Mon Mar 28 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:6.0.2-1
 - Update to 6.0.2 version (#2067984)
