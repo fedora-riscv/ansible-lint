@@ -48,7 +48,7 @@ sed -i 's/4.5.1/3.2.0/g' setup.cfg
 ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 
 %files -n python3-%{archive_name}
-%doc README.rst examples
+%doc README.md examples
 %license COPYING
 %{_bindir}/%{name}
 %{_bindir}/%{name}-3
