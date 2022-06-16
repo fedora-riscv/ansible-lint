@@ -4,7 +4,7 @@
 Name:           %{archive_name}
 Epoch:          1
 Version:        6.2.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        GPLv3
@@ -56,6 +56,9 @@ ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 %{python3_sitelib}/ansible_lint-%{version}.dist-info/
 
 %changelog
+* Thu Jun 16 2022 Python Maint <python-maint@redhat.com> - 1:6.2.2-2
+- Rebuilt for Python 3.11
+
 * Tue May 31 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:6.2.2-1
 - Update to 6.2.2 version (#2091576)
 
