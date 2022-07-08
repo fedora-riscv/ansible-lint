@@ -4,7 +4,7 @@
 Name:           %{archive_name}
 Epoch:          1
 Version:        6.3.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        GPLv3
@@ -31,8 +31,6 @@ Python3 module for ansible-lint.
 
 %prep
 %autosetup -n %{archive_name}-%{version}
-sed -i 's/4.5.1/3.2.0/g' requirements.txt
-sed -i 's/4.5.1/3.2.0/g' setup.cfg
 
 %generate_buildrequires
 %pyproject_buildrequires
@@ -46,16 +44,22 @@ sed -i 's/4.5.1/3.2.0/g' setup.cfg
 #   ansible-lint => Python 3
 #   ansible-lint-3 => Python 3 (to avoid breaking anyone's scripts)
 ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
+%pyproject_save_files %{lib_name}
 
-%files -n python3-%{archive_name}
+%check
+%pyproject_check_import
+
+%files -n python3-%{archive_name} -f %{pyproject_files}
 %doc README.md examples
 %license COPYING
 %{_bindir}/%{name}
 %{_bindir}/%{name}-3
-%{python3_sitelib}/%{lib_name}/
-%{python3_sitelib}/ansible_lint-%{version}.dist-info/
 
 %changelog
+* Fri Jul 08 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:6.3.0-2
+- Drop lowering of jsonschema requirement
+- add minimal %%check to ensure to catch newly added requirements
+
 * Fri Jun 17 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:6.3.0-1
 - Update to 6.3.0 version (#2095420)
 
