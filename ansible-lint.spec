@@ -4,7 +4,7 @@
 Name:           %{archive_name}
 Epoch:          1
 Version:        6.3.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        GPLv3
@@ -56,6 +56,9 @@ ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 %{_bindir}/%{name}-3
 
 %changelog
+* Wed Jul 20 2022 Fedora Release Engineering <releng@fedoraproject.org> - 1:6.3.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
+
 * Fri Jul 08 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:6.3.0-2
 - Drop lowering of jsonschema requirement
 - add minimal %%check to ensure to catch newly added requirements
