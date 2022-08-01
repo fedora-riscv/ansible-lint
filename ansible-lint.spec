@@ -3,8 +3,8 @@
 
 Name:           %{archive_name}
 Epoch:          1
-Version:        6.3.0
-Release:        3%{?dist}
+Version:        6.4.0
+Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        GPLv3
@@ -56,6 +56,9 @@ ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 %{_bindir}/%{name}-3
 
 %changelog
+* Mon Aug 01 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:6.4.0-1
+- Update to 6.4.0 version (#2111880)
+
 * Wed Jul 20 2022 Fedora Release Engineering <releng@fedoraproject.org> - 1:6.3.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
 
