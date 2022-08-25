@@ -4,15 +4,18 @@
 Name:           %{archive_name}
 Epoch:          1
 Version:        6.5.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Best practices checker for Ansible
 
-License:        GPLv3
+# README file says its just GPLv3
+License:        GPL-3.0-only
 URL:            https://github.com/ansible/ansible-lint
 Source0:        https://github.com/ansible/%{archive_name}/archive/v%{version}.tar.gz
 
 BuildArch:      noarch
 BuildRequires:	pyproject-rpm-macros
+# for check section
+BuildRequires:  python3dist(pytest)
 
 %description
 Checks playbooks for practices and behavior that could potentially be improved.
@@ -56,6 +59,10 @@ ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 %{_bindir}/%{name}-3
 
 %changelog
+* Thu Aug 25 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:6.5.0-2
+- Add explicit BR: python3-pytest
+- change license to use SPDX format
+
 * Tue Aug 23 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:6.5.0-1
 - Update to 6.5.0 version (#2120214)
 
