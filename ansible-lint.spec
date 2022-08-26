@@ -3,8 +3,8 @@
 
 Name:           %{archive_name}
 Epoch:          1
-Version:        6.5.0
-Release:        2%{?dist}
+Version:        6.5.1
+Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
 # README file says its just GPLv3
@@ -59,6 +59,9 @@ ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 %{_bindir}/%{name}-3
 
 %changelog
+* Fri Aug 26 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:6.5.1-1
+- Update to 6.5.1 version (#2121398)
+
 * Thu Aug 25 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:6.5.0-2
 - Add explicit BR: python3-pytest
 - change license to use SPDX format
