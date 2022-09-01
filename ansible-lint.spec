@@ -3,8 +3,8 @@
 
 Name:           %{archive_name}
 Epoch:          1
-Version:        5.1.2
-Release:        3%{?dist}
+Version:        5.4.0
+Release:        1%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -54,8 +54,29 @@ ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 %{python3_sitelib}/ansible_lint-%{version}.dist-info/
 
 %changelog
-* Tue May 31 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:5.1.2-3
-+ Requires: /usr/bin/ansible (#1949362)
+* Sun Feb 13 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:5.4.0-1
+- Update to 5.4.0 version (#2053887)
+
+* Wed Jan 19 2022 Fedora Release Engineering <releng@fedoraproject.org> - 1:5.3.2-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
+
+* Fri Jan 14 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:5.3.2-1
+- Update to 5.3.2 version (#2039168)
+
+* Mon Dec 13 2021 Parag Nemade <pnemade AT redhat DOT com> - 1:5.3.1-1
+- Update to 5.3.1 version (#2030304)
+
+* Mon Dec 06 2021 Parag Nemade <pnemade AT redhat DOT com> - 1:5.3.0-1
+- Update to 5.3.0 version (#2028259)
+
+* Wed Oct 20 2021 Parag Nemade <pnemade AT redhat DOT com> - 1:5.2.1-1
+- Update to 5.2.1 version (#2015831)
+
+* Fri Oct 01 2021 Parag Nemade <pnemade AT redhat DOT com> - 1:5.2.0-1
+- Update to 5.2.0 version (#2009767)
+
+* Thu Sep 02 2021 Parag Nemade <pnemade AT redhat DOT com> - 1:5.1.3-1
+- Update to 5.1.3 version (#1999888)
 
 * Wed Jul 21 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1:5.1.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
