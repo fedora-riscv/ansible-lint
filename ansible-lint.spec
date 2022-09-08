@@ -4,7 +4,7 @@
 Name:           %{archive_name}
 Epoch:          1
 Version:        5.4.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Best practices checker for Ansible
 
 License:        MIT
@@ -13,6 +13,11 @@ Source0:        https://github.com/willthames/%{archive_name}/archive/v%{version
 
 BuildArch:      noarch
 BuildRequires:	pyproject-rpm-macros
+
+#Below dependencies are needed for checking if this module is importable
+#this will help during build only if this build is usable or not
+BuildRequires:  ansible-core
+BuildRequires:  python3dist(pytest)
 
 %description
 Checks playbooks for practices and behavior that could potentially be improved.
@@ -44,6 +49,10 @@ Python3 module for ansible-lint.
 #   ansible-lint => Python 3
 #   ansible-lint-3 => Python 3 (to avoid breaking anyone's scripts)
 ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
+%pyproject_save_files %{lib_name}
+
+%check
+%pyproject_check_import
 
 %files -n python3-%{archive_name}
 %doc README.rst examples
@@ -54,6 +63,9 @@ ln -sr %{buildroot}%{_bindir}/%{name}{,-3}
 %{python3_sitelib}/ansible_lint-%{version}.dist-info/
 
 %changelog
+* Thu Sep 08 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:5.4.0-2
+- Add check import to make sure new releases are working
+
 * Sun Feb 13 2022 Parag Nemade <pnemade AT redhat DOT com> - 1:5.4.0-1
 - Update to 5.4.0 version (#2053887)
 
