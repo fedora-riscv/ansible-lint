@@ -22,7 +22,6 @@ Checks playbooks for practices and behavior that could potentially be improved.
 
 %package -n python3-%{archive_name}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{archive_name}}
 Obsoletes:      python2-%{archive_name} < 3.4.23-6
 Provides:       %{archive_name} = %{version}-%{release}
 
