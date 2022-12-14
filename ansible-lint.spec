@@ -10,7 +10,7 @@ Summary:        Best practices checker for Ansible
 # README file says its just GPLv3
 License:        GPL-3.0-only
 URL:            https://github.com/ansible/ansible-lint
-Source0:        https://github.com/ansible/%{archive_name}/archive/v%{version}.tar.gz
+Source0:        %{pypi_source ansible-lint}
 
 BuildArch:      noarch
 BuildRequires:	pyproject-rpm-macros
