@@ -34,6 +34,14 @@ Python3 module for ansible-lint.
 %prep
 %autosetup -n %{archive_name}-%{version}
 
+# There's nothing special in setuptools 63.0 that's needed here.
+# Fedora 36's setuptools version is actually too old;
+# it does not support PEP 621.
+%if %{defined fc37}
+sed 's|setuptools >= 63.0.0|setuptools >= 62.0.0|' -i pyproject.toml
+grep -F 'setuptools >= 62.0.0' pyproject.toml
+%endif
+
 %generate_buildrequires
 %pyproject_buildrequires
 
