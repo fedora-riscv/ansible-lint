@@ -4,13 +4,14 @@
 Name:           %{archive_name}
 Epoch:          1
 Version:        6.18.0
-Release:        1%{?dist}
+Release:        1.rv64%{?dist}
 Summary:        Best practices checker for Ansible
 
 # README file says its just GPLv3
 License:        GPL-3.0-only
 URL:            https://github.com/ansible/ansible-lint
 Source0:        %{pypi_source ansible-lint}
+Patch0:         fix_requirements.patch
 
 BuildArch:      noarch
 BuildRequires:	pyproject-rpm-macros
